@@ -1,0 +1,6 @@
+services:
+  geo:
+    build: .
+    container_name: geo
+    ports:
+      - 8080:8080
