@@ -1,0 +1,72 @@
+basePath: /
+definitions:
+  main.Address:
+    properties:
+      city:
+        type: string
+      house:
+        type: string
+      lat:
+        type: string
+      lon:
+        type: string
+      street:
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: You can get address suggestion by address strind.
+  title: Geo Service API
+  version: "1.0"
+paths:
+  /api/address/geocode:
+    post:
+      description: get address suggestions from location
+      operationId: geocode
+      parameters:
+      - description: latitude
+        in: query
+        name: lat
+        required: true
+        type: string
+      - description: longitude
+        in: query
+        name: lng
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/main.Address'
+            type: array
+      summary: GeoCode
+      tags:
+      - geocode
+  /api/address/search:
+    post:
+      description: get address suggestions from address string
+      operationId: search
+      parameters:
+      - description: address string
+        in: query
+        name: input
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/main.Address'
+            type: array
+      summary: AddressSearcb
+      tags:
+      - search
+swagger: "2.0"
